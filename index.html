@@ -7,9 +7,35 @@
 
   <body>
     <script type="text/javascript">
-      JsModule.init()
-      JsModule.init()
-      console.log(JsModule)
+      'use strict';
+
+      // CASE 1
+      // Just a Loop
+      for(var i = 0; i < 10; i++){
+        console.log("i = " + i)
+      }
+
+      // CASE 2
+      // Loop will be finished before setTimeout started
+      // j always be 10
+      for(var j = 0; j < 10; j++){
+        setTimeout(function(){
+          console.log("j = " + j)
+        }, 1000*j)
+      }
+
+      // CASE 3
+      for(var k = 0; k < 10; k++){
+
+        // k will be internal var l
+        // value of l will be fixed
+        (function(l){
+          setTimeout(function(){
+            console.log("l = " + l, "; check k = " + k)
+          }, 1000*l)
+        })(k) // <= k passsed into noname function
+
+      }
     </script>
 
     <p>JS Sandbox</p>
